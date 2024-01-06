@@ -1,0 +1,16 @@
+{
+    "name": "youcode/soutenance",
+    "autoload": {
+        "psr-4": {
+            "Core\\": "core/",
+        "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "IBNESSAYEH",
+            "email": "abdellatifibnessayeh@gmail.com"
+        }
+    ],
+    "require": {}
+}
