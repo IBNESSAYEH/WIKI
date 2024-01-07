@@ -5,9 +5,13 @@ namespace Core;
 
 class Controller
 {
+    
     private $filename;
     public function view($filename, $data = [])
     {
+        if(!empty($data)){
+            extract($data);
+        }
         $this->filename =  __DIR__ . "/../views/" . $filename . ".php";
         if(file_exists($this->filename)){
             require $this->filename;

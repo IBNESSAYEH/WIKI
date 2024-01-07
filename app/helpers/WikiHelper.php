@@ -12,8 +12,19 @@ private $titre;
 private $contenu;
 private $id_categorie;	
 private $id_user;
+private $date_creation;
 
 
+    public function getDateCreation()
+    {
+        return $this->date_creation;
+    }
+
+   
+    public function setDateCreation($date_creation)
+    {
+        $this->date_creation = $date_creation;
+    }
     public function getId()
     {
         return $this->id;

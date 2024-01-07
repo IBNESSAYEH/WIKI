@@ -3,70 +3,26 @@
 namespace App\models;
 
 use App\helpers\UserHelper ;
+use Core\Database;
 class User extends UserHelper
 {
-    
-    private $id;
-    private $nom;
-    private $email;
-    private $isAdmin;	
-    private $password;
-
-    public function getId()
-    {
-        return $this->id;
+   
+    private $connection;
+    public function __construct(){
+        $this->connection = new Database();
     }
 
- 
-    public function setId($id)
-    {
-        $this->id = $id;
+    public function getAllUsers(){
+        try{
+
+            $query = $this->connection->getConnection()->prepare("SELECT * FROM users");
+            $query->execute();
+            $result = $query->fetchAll(\PDO::FETCH_OBJ);
+            return !empty($result) ? $result : false;
+        }catch(\PDOException $e) {
+            echo "Error: " . $e->getMessage();
+       
+        } 
     }
 
-  
-    public function getNom()
-    {
-        return $this->nom;
-    }
-
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-    }
-
-
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    }
-
-
-    public function getIsAdmin()
-    {
-        return $this->isAdmin;
-    }
-
-    public function setIsAdmin($isAdmin)
-    {
-        $this->isAdmin = $isAdmin;
-    }
-
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-
-    public function setPassword($password)
-    {
-        $this->password = $password;
-    }
-
-    
 }
