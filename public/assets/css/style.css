@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+header{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+
+.nav__logo{
+    width: 2.7rem;
+    height: 2.7rem;
+}
+
+
+.main__section__wikis{
+    margin-top: 3rem;
+}
+
+.section__wikis__container{
+    margin: 1rem;
+}
+
+.section__wikis__container img{
+    width: 100%;
+}
