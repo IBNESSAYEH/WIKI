@@ -38,3 +38,8 @@ CREATE TABLE wikiTag (
     FOREIGN KEY (id_wiki) REFERENCES wiki(id),
     FOREIGN KEY (id_tag) REFERENCES tag(id)
 ) ENGINE=InnoDB;
+
+
+
+alter table wiki add column isAccepted int ;
+alter table wiki add column date_creation date ;

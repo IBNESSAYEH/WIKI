@@ -16,7 +16,7 @@ class AdminController extends Controller
     public function index(){
         // get all wikies to pass it into home page
         $this->wikis = new Wiki();
-        $wikis = $this->wikis->getAllWikis();
+        $wikis = $this->wikis->getAllWikis(0);
         // get all tags to pass it into home page
         $this->tags = new Tag();
         $tags = $this->tags->getAllTags();

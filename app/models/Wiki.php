@@ -13,13 +13,27 @@ class Wiki extends WikiHelper
         $this->connection = new Database();
     }
 
-    public function getAllWikis(){
+    public function getAllWikis($isAccepted){
         try{
 
-            $query = $this->connection->getConnection()->prepare("SELECT * FROM wiki");
+            $query = $this->connection->getConnection()->prepare("SELECT * FROM wiki where isAccepted = $isAccepted order by date_creation desc");
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_OBJ);
             return !empty($result) ? $result : false;
+        }catch(\PDOException $e) {
+            echo "Error: " . $e->getMessage();
+       
+        }
+
+    }
+    public function UpdateWiki(){
+        try{
+
+            $query = $this->connection->getConnection()->prepare("UPDATE wiki SET isAccepted = :isAccepted WHERE id = :id");
+            $query->bindValue(':id', $this->getId());
+            $query->bindValue(':isAccepted', 1);
+            $query->execute();
+            
         }catch(\PDOException $e) {
             echo "Error: " . $e->getMessage();
        
