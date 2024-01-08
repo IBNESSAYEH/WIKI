@@ -15,7 +15,7 @@ class User extends UserHelper
     public function getAllUsers(){
         try{
 
-            $query = $this->connection->getConnection()->prepare("SELECT * FROM users");
+            $query = $this->connection->getConnection()->prepare("SELECT * FROM users order by isAdmin desc");
             $query->execute();
             $result = $query->fetchAll(\PDO::FETCH_OBJ);
             return !empty($result) ? $result : false;

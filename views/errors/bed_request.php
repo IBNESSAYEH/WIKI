@@ -1,0 +1,1 @@
+<img src="/assets/images/bedRequest.jpg" alt="">
