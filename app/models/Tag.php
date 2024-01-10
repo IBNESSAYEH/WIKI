@@ -28,4 +28,28 @@ class Tag extends TagHelper
 
     }
 
+    public function createTag()
+    {
+        $query = $this->connection->getConnection()->prepare("INSERT INTO tag (nom) VALUES (:nom)");
+        $query->bindValue(':nom', $this->getNom());
+        $query->execute();
+    }
+
+
+    public function updateTag()
+    {
+        $query = $this->connection->getConnection()->prepare("UPDATE tag SET nom = :nom WHERE id = :id");
+        $query->bindValue(':id', $this->getId());
+        $query->bindValue(':nom', $this->getNom());
+        $query->execute();
+    }
+
+
+    public function deleteTag($id)
+    {
+        $query = $this->connection->getConnection()->prepare("DELETE FROM tag WHERE id = :id");
+        $query->bindValue(':id', $id);
+        $query->execute();
+    }
+
 }

@@ -80,8 +80,8 @@
                                                         <div class="card card-body">
                                                             <?php foreach ($categories as $categorie): ?>
                                                                 <div class="form-check">
-                                                                    <input class="form-check-input" name="ctegorie"
-                                                                        type="radio" value="<?= $categorie->id ?>" id="">
+                                                                    <input class="form-check-input" name="categorie"
+                                                                        type="radio" value="<?= $categorie->id ?>" id="" required>
                                                                         
                                                                     <label class="form-check-label" for="flexCheckDefault">
                                                                         <?= $categorie->nom ?>
@@ -98,7 +98,7 @@
                                                             <?php foreach ($tags as $tag): ?>
                                                                 <div class="form-check">
                                                                     <input class="form-check-input" type="checkbox"
-                                                                        name="tag[]" value="<?= $tag->id ?>">
+                                                                        name="tag[]" value="<?= $tag->id ?>" required>
                                                                     <label class="form-check-label" for="flexRadioDefault1">
                                                                         <?= $tag->nom ?>
                                                                     </label>

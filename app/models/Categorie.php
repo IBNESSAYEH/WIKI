@@ -27,4 +27,28 @@ class Categorie extends CategorieHelper
 
     }
 
+    public function createCategory()
+    {
+        $query = $this->connection->getConnection()->prepare("INSERT INTO categorie (nom) VALUES (:nom)");
+        $query->bindValue(':nom', $this->getNom());
+        $query->execute();
+    }
+
+   
+    public function updateCategory()
+    {
+        $query = $this->connection->getConnection()->prepare("UPDATE categorie SET nom = :nom WHERE id = :id");
+        $query->bindValue(':id', $this->getId());
+        $query->bindValue(':nom', $this->getNom());
+        $query->execute();
+    }
+
+  
+    public function deleteCategory($id)
+    {
+        $query = $this->connection->getConnection()->prepare("DELETE FROM categorie WHERE id = :id");
+        $query->bindValue(':id', $id);
+        $query->execute();
+    }
+
 }
