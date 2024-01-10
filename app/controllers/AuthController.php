@@ -37,6 +37,7 @@ class AuthController extends Controller
         header("location: http://localhost:8000/auth/signin");
        }else{
            $_SESSION["isAdmin"]= $exists->isAdmin;
+           $_SESSION["id_user"]= $exists->id;
         if($exists->isAdmin){
             header("location: http://localhost:8000/admin");
            }else{
@@ -46,7 +47,10 @@ class AuthController extends Controller
         
     }
 
-
+    public function logout(){
+        $this->user->logout();
+        header("location: http://localhost:8000/auth/signup");
+    }
     public function RegisterValidation()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {

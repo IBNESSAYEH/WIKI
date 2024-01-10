@@ -40,5 +40,39 @@ class Wiki extends WikiHelper
         }
 
     }
+    public function createWiki()
+    {
+        $query = $this->connection->getConnection()->prepare("INSERT INTO wiki(titre, contenu, id_categorie, id_user, isAccepted) VALUES(:titre, :contenu, :id_categorie, :id_user, :isAccepted)");
+        $query->bindValue(':titre', $this->getTitre());
+        $query->bindValue(':contenu', $this->getContenu());
+        $query->bindValue(':id_categorie', $this->getIdCategorie());
+        $query->bindValue(':id_user', $this->getIdUser());
+        $query->bindValue(':isAccepted', 0);
+        $query->execute();
 
+        // retourne le id de cette wiki 
+        $lastInsertId = $this->connection->getConnection()->lastInsertId();
+
+        return $lastInsertId;
+    }
+
+    public function getWikiById($id)
+    {
+        $query = $this->connection->getConnection()->prepare("SELECT * FROM wiki WHERE id = :id");
+        $query->bindValue(':id', $id);
+        $query->execute();
+        $result = $query->fetch(PDO::FETCH_OBJ);
+
+        return !empty($result) ? $result : false;
+    }
+
+    
+
+    public function deleteWiki($id)
+    {
+        $query = $this->connection->getConnection()->prepare("DELETE FROM wiki WHERE id = :id");
+        $query->bindValue(':id', $id);
+        $query->execute();
+    }
+    
 }
