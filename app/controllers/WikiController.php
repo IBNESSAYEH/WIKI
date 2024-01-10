@@ -3,16 +3,41 @@
 namespace App\controllers;
 
 use App\models\Wiki;
+use App\models\Categorie;
+use App\models\Tag;
+use App\models\User;
 use Core\Controller;
 class WikiController extends Controller
 {
 
     private $wiki;
-    public function create(){
-       var_dump($_POST);
-    }
-    public function update(){
+    private $tags;
+    private $categorie;
+
+    public function __construct(){
         $this->wiki = new Wiki();
+        $this->categorie = new Categorie();
+        $this->tags = new Tag();
+    }
+    public function create(){
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $this->wiki->setTitre($_POST['titre']) ;
+        $this->wiki->setContenu($_POST['contenu']) ;
+        $this->wiki->setIdCategorie($_POST['categorie']) ;
+        $this->wiki->setIdUser($_SESSION['id_user']) ;
+        $id_wiki = $this->wiki->createWiki();
+         var_dump($id_wiki) ;
+    }
+
+    return false;
+    }
+
+
+
+
+    public function accept(){
+       
         if(!isset($_POST["id"])){
             $this->view('bed_request.php');
         }

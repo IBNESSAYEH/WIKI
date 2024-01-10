@@ -69,7 +69,7 @@ if($_SESSION['isAdmin'] != 1){
             </li>
 
             <li class="menu__list__item__logout">
-                <a href="">
+                <a href="http://localhost:8000/auth/logout">
                     <i class="fas fa-sign-out"></i>
                     <p>Log Out</p>
                 </a>
@@ -158,7 +158,7 @@ if($_SESSION['isAdmin'] != 1){
                                             <?= $wiki->contenu ?>
                                         </div>
                                         <div class="modal-footer">
-                                        <form action="http://localhost:8000/wiki/update" method="POST">
+                                        <form action="http://localhost:8000/wiki/accept" method="POST">
                                 <input name="id"  value="<?= $wiki->id ?>"  type="hidden">
                                 <button type="submit"   class="btn btn-outline-primary">accepter</button>
                             </form>

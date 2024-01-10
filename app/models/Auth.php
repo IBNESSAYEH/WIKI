@@ -31,7 +31,7 @@ class Auth extends UserHelper
     }
     public function login(){
         try{
-            $query = $this->connection->getConnection()->prepare("SELECT email, password, isAdmin FROM users WHERE email = :email and password = :password");  
+            $query = $this->connection->getConnection()->prepare("SELECT id, email, password, isAdmin FROM users WHERE email = :email and password = :password");  
             $query->bindValue(':email', $this->getEmail());
             $query->bindValue(':password', $this->getPassword());
             
@@ -42,6 +42,11 @@ class Auth extends UserHelper
             echo "Error: " . $e->getMessage();
        
         } 
+    }
+
+
+    public function logout(){
+        session_destroy();
     }
 
 }

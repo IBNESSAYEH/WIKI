@@ -43,3 +43,5 @@ CREATE TABLE wikiTag (
 
 alter table wiki add column isAccepted int ;
 alter table wiki add column date_creation date ;
+ALTER TABLE wiki MODIFY date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+
