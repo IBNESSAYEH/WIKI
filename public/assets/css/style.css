@@ -2,8 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
 }
 
+body{
+    background-color: #e7e1e1;
+}
 
 header{
     position: sticky;
@@ -28,4 +32,23 @@ header{
 
 .section__wikis__container img{
     width: 100%;
+}
+
+
+.section__wikis__creation .card-text{
+    height: 3.5rem;
+    border: solid 1px rgb(194, 194, 194);
+    border-radius: 2rem;
+    
+}
+
+.section__wikis__creation .profile {
+    width: 3.5rem;
+    height: 3.5rem;
+
+}
+
+textarea{
+    border: solid 1px rgb(194, 194, 194);
+    padding: 1rem;
 }

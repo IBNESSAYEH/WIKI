@@ -2,13 +2,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
 }
 body{
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(27, 140, 210, 0.548);
+    background-color: #0d6efd;
 }
 .signup__container{
     width: 70vw;
