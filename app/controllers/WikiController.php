@@ -8,6 +8,9 @@ class WikiController extends Controller
 {
 
     private $wiki;
+    public function create(){
+       var_dump($_POST);
+    }
     public function update(){
         $this->wiki = new Wiki();
         if(!isset($_POST["id"])){
