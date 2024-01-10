@@ -28,7 +28,7 @@ if($_SESSION['isAdmin'] != 1){
                 <div class="menu__profile">
                     <img src="/assets/images/profile.jpg" alt="">
                 </div>
-                <h4 class="menu__profile__name">abdellatif ibnessayeh</h4>
+                <h5 class="menu__profile__name">abdellatif ibnessayeh</h5>
             </li>
             <li class="menu__list__item">
                 <a href="http://localhost:8000">
@@ -81,7 +81,7 @@ if($_SESSION['isAdmin'] != 1){
 
     <main id="statistique" class="container">
         <div  class="container__header">
-            <h3>dashboard</h3>
+            <h5>dashboard</h5>
             <i class="fas fa-chart-pie"></i>
         </div>
         <div class="container__statistique">
@@ -120,7 +120,7 @@ if($_SESSION['isAdmin'] != 1){
 
         </div>
         <div id="wikis" class="container__header">
-            <h3>Wikis Statistiques</h3>
+            <h5>Wikis Statistiques</h5>
             <i class="fas fa-pen"></i>
         </div>
         <?php  if ($wikis !== false): ?>
@@ -177,7 +177,7 @@ if($_SESSION['isAdmin'] != 1){
     <p class="alert alert-success my-2">vous n'avez aucune wiki sans acceptation !!!!!.</p>
 <?php endif; ?>
         <div id="tags" class="container__header">
-            <h3>Tags Statistiques</h3>
+            <h5>Tags Statistiques</h5>
             <i class="fas fa-tag"></i>
         </div>
 
@@ -202,7 +202,7 @@ if($_SESSION['isAdmin'] != 1){
         </table>
 
         <div id="categories" class="container__header">
-            <h3>categories Statistiques</h3>
+            <h5>categories Statistiques</h5>
             <i class="fas fa-table"></i>
         </div>
 
@@ -226,7 +226,7 @@ if($_SESSION['isAdmin'] != 1){
             </tbody>
         </table>
         <div  id="users"  class="container__header">
-            <h3>Users Statistiques</h3>
+            <h5>Users Statistiques</h5>
             <i class="fas fa-user-group"></i>
         </div>
 

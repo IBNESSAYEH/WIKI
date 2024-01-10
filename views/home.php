@@ -12,10 +12,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <title>Wiki</title>
 </head>
 
 <body>
+
+<!-- header of page -->
 
     <?php include "layouts/header.php"; ?>
 
@@ -30,92 +34,10 @@
                             <img src="/assets/images/profile.jpg" alt="profile"
                                 class="profile rounded-circle shadow-sm">
                             <p class="card-text d-flex justify-content-start p-3  align-items-center text-muted w-100 shadow"
-                                data-bs-toggle="modal" data-bs-target="#exampleModalINSERT">Commencer un wiki ....</p>
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModalINSERT" tabindex="-1"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel"> <img
-                                                    src="/assets/images/profile.jpg" alt="profile"
-                                                    class="profile rounded-circle shadow-sm"></h1>
-                                                    <form id="registerForm" class="signup__container__form w-100 "
-                                                        action="http://localhost:8000/wiki/create" method="POST">
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                    </div>
-                                                    
-                                        <div class="modal-body">
+                                data-bs-toggle="modal" data-bs-target="#exampleModalINSERT">Commencer un wiki....</p>
+                            <!-- Modal pourla creation d'une wiki -->
+                            <?php  include "../views/layouts/AddWikiModal.php";  ?>
 
-                                        <div class="mb-3">
-                                                    
-                                         <input type="text" name="titre" class="w-100 border-0 p-2 border-light " placeholder="creer l'objectif de cette wiki">
-                                                </div>
-
-                                                <div class="mb-3">
-                                                    <label for="#story">Creer votre Wiki....</label>
-                                                    <textarea id="story" name="contenu" rows="10"
-                                                        class="w-100 text-muted ">
-
-                                                    </textarea>
-                                                </div>
-
-                                        </div>
-                                        <div class="modal-footer">
-                                            
-                                            <p class="d-inline-flex gap-1">
-                                                <button type="submit" class="btn btn-success">publier</button>
-                                                <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#multiCollapseExample2" aria-expanded="false"
-                                                aria-controls="multiCollapseExample2">choisir des tags</button>
-                                                <a class="btn btn-primary" data-bs-toggle="collapse"
-                                                href="#multiCollapseExample1" role="button" aria-expanded="false"
-                                                aria-controls="multiCollapseExample1">choisir une categorie</a>
-                                                
-                                            </p>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="collapse multi-collapse" id="multiCollapseExample1">
-                                                        <div class="card card-body">
-                                                            <?php foreach ($categories as $categorie): ?>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" name="categorie"
-                                                                        type="radio" value="<?= $categorie->id ?>" id="" required>
-                                                                        
-                                                                    <label class="form-check-label" for="flexCheckDefault">
-                                                                        <?= $categorie->nom ?>
-                                                                    </label>
-                                                                </div>
-                                                            <?php endforeach; ?>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="collapse multi-collapse" id="multiCollapseExample2">
-                                                        <div class="card card-body">
-                                                            <?php foreach ($tags as $tag): ?>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        name="tag[]" value="<?= $tag->id ?>" required>
-                                                                    <label class="form-check-label" for="flexRadioDefault1">
-                                                                        <?= $tag->nom ?>
-                                                                    </label>
-                                                                </div>
-
-                                                            <?php endforeach; ?>
-
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </form>
                         </div>
                         <div class="card-footer text-muted">
                             2 days ago
@@ -123,10 +45,17 @@
                     </div>
                 </div>
 
+
+                <!-- affichage des wikis -->
+
                 <?php foreach ($wikis as $wiki): ?>
                     <div class="section__wikis__container col-12 col-md-10 col-lg-6  d-flex justify-content-around">
                         <div class="card" style="width: 100%;">
-                            <img class="card-img-top" src="assets/images/wiki.jpg" alt="Card image cap">
+                            <div class="card-header w-100">
+
+                                <img src="/assets/images/profile.jpg" alt="profile"
+                                    class="profile rounded-circle shadow-sm " style="width: 10%">
+                            </div>
                             <div class="card-body">
                                 <h5 class="card-title ">
                                     <?= $wiki->titre ?>
@@ -135,14 +64,24 @@
                                     <?= $wiki->contenu ?>
                                 </p>
 
-                                <div class="w-100">
-                                    <a
-                                        class="btn link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">voir
-                                        plus...</a>
-                                    <p class="w-75 text-right  d-inline-block ">
-                                        <?= $wiki->date_creation ?>
-                                    </p>
-                                </div>
+
+                            </div>
+                            <img class="card-img-bottom" src="assets/images/wiki.jpg" alt="Card image cap">
+
+                            <div class="card-footer d-flex justify-content-between align-items-center">
+
+                                <?= $wiki->date_creation ?>
+                                <?php if ($_SESSION['id_user'] == $wiki->id_user): ?>
+                                    <div class="d-flex m-2">
+
+                                        <a href="#" class="text-secondary "><i
+                                                class="fa-solid fa-trash  ms-4 me-1  fs-5"></i>supprimer</a>
+                                        <a href="#" class="text-secondary "><i
+                                                class="fa-solid fa-pen-to-square  ms-4 me-1  fs-5"></i>modifier</a>
+                                    </div>
+                                <?php else: ?>
+                                    <a class="text-secondary"><i class="fa-solid fa-flag ms-4 me-1  fs-5"></i></i>signaler</a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -154,6 +93,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ 
 </body>
 
 </html>

@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
+    text-decoration: none !important;
 }
 
 body{
@@ -13,15 +14,31 @@ header{
     position: sticky;
     top: 0;
     z-index: 10;
+    
 }
-
-
+nav{
+    height: 3.4rem;
+    padding: 0 !important;
+    background-color: #fff !important;
+}
+/* .navbar-collapse {
+     background-color: #fff; 
+    
+} */
+.nav__content{
+    margin-top:  1rem;
+}
 .nav__logo{
     width: 2.7rem;
     height: 2.7rem;
 }
 
-
+.nav__search{
+    margin-top: -1rem;
+    width: 45rem;
+    display: flex;
+    justify-content: flex-start;
+}
 .main__section__wikis{
     margin-top: 3rem;
 }
