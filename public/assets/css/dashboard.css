@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     color: #fff;
-    font-family: 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 body{
@@ -160,7 +160,6 @@ body{
 }
 .container__statistique__info p{
     font-size: 1.5rem;
-    font-family: serif;
 }
 
 

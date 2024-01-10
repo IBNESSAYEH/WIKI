@@ -1,10 +1,12 @@
 <?php 
 
 namespace App\controllers;
-class _404
+
+use Core\Controller;
+class _404 extends Controller
 {
     public function __construct(){
-        echo "doesn't exist 404";
+        $this->view('errors/bed_request');
     }
     
 }
