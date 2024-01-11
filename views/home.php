@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +27,7 @@
 
     <div class="container mt-4">
         <main class="main">
-            <section class="main__section__wikis row justify-content-around">
+            <section class="main__section__wikis row justify-content-center" id="search_result">
 
                 <div class="section__wikis__creation col-12 col-md-10 col-lg-6  d-flex justify-content-around">
                     <div class="card text-center " style="width: 100%;">
@@ -50,7 +52,7 @@
 
                 <?php foreach ($wikis as $wiki): ?>
                     <div class="section__wikis__container col-12 col-md-10 col-lg-6  d-flex justify-content-around">
-                        <div class="card" style="width: 100%;">
+                        <div class="card"   style="width: 100%;">
                             <div class="card-header w-100">
 
                                 <img src="/assets/images/profile.jpg" alt="profile"
@@ -96,6 +98,60 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var liveSearchInput = document.getElementById("live_search");
+        var searchResultContainer = document.getElementById("search_result");
+
+        liveSearchInput.addEventListener("keyup", function () {
+            var input = liveSearchInput.value;
+
+            if (input !== "") {
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "search.php", true);
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        // Clear previous results
+                        searchResultContainer.innerHTML = "";
+                        // Append the new search results
+                        searchResultContainer.innerHTML += xhr.responseText;
+                        searchResultContainer.style.display = "flex";
+                    }
+                };
+                xhr.send("input=" + input);
+            } else {
+                searchResultContainer.innerHTML = "";
+                searchResultContainer.style.display = "none";
+            }
+        });
+    });
+</script>
+
+
+
+
  
 </body>
 

@@ -31,10 +31,9 @@
 
                 <div class="nav__search">
                     <form class="d-flex mx-auto w-50">
-                        <input class="form-control me-2 text-white border-0" type="search"
+                        <input class="form-control me-2 text-white border-0" id="live_search" type="search"
                             placeholder="Search for products..." aria-label="Search"
                             style="background : #e5e1e1;">
-                        <button class="btn btn-primary" type="submit">Search</button>
                     </form>
                     <?php if (!isset($_SESSION['isAdmin'])): ?>
                     <ul class="ml-auto d-flex mx-2">

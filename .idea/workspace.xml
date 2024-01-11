@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e4b11d9-fc45-4b35-b5c8-238427f46887" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/WikiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/WikiController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/dashboard.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/home.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,6 +64,7 @@
       <workItem from="1704790671624" duration="543000" />
       <workItem from="1704810658226" duration="1930000" />
       <workItem from="1704890437185" duration="10068000" />
+      <workItem from="1704909084237" duration="13022000" />
     </task>
     <servers />
   </component>
