@@ -36,7 +36,7 @@
                             <div class="card card-body">
                                 <?php foreach ($categories as $categorie) : ?>
                                     <div class="form-check">
-                                        <input class="form-check-input" name="categorie" type="radio" value="<?= $categorie->id ?>" id="" required>
+                                        <input class="form-check-input" name="categorie" type="radio" value="<?= $categorie->id ?>" id="" >
 
                                         <label class="form-check-label" for="flexCheckDefault">
                                             <?= $categorie->nom ?>

@@ -74,5 +74,36 @@ class Wiki extends WikiHelper
         $query->bindValue(':id', $id);
         $query->execute();
     }
+
+
+    public function getAllWikisInfo(){
+        try {
+            $query = $this->connection->getConnection()->prepare("SELECT
+                wiki.id AS wiki_id,
+                wiki.titre AS wiki_titre,
+                wiki.contenu AS wiki_contenu,
+                wiki.date_creation AS wiki_date,
+                categorie.nom AS categorie_nom,
+                GROUP_CONCAT(tag.nom) AS tag_nom,
+                users.nom AS user_nom
+            FROM
+                wiki
+                INNER JOIN categorie ON wiki.id_categorie = categorie.id
+                LEFT JOIN wikiTag ON wiki.id = wikiTag.id_wiki
+                LEFT JOIN tag ON wikiTag.id_tag = tag.id
+                LEFT JOIN users ON wiki.id_user = users.id
+            GROUP BY
+                wiki.id;
+            ");
+    
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_OBJ);
+            return !empty($result) ? $result : false;
+        }catch(\PDOException $e) {
+            echo "Error: " . $e->getMessage();
+       
+        }
+    }
+    
     
 }
