@@ -33,6 +33,7 @@ class WikiController extends Controller
         $id_wiki = $this->wiki->createWiki();
        foreach($_POST['tag'] as $tag){
         $this->wiki_tag->createWikiTag($id_wiki, $tag);
+        header("Location: {$_SERVER['HTTP_REFERER']}");
        }
     }
 
@@ -45,7 +46,7 @@ class WikiController extends Controller
     public function accept(){
        
         if(!isset($_POST["id"])){
-            $this->view('bed_request.php');
+          $this->view('bed_request.php');
         }
         $idWiki = intval(htmlspecialchars($_POST["id"])) ;
         $this->wiki->setId($idWiki);
@@ -53,4 +54,28 @@ class WikiController extends Controller
         header("Location: {$_SERVER['HTTP_REFERER']}");
 exit;
     }
+    public function delete($id){
+        $this->wiki_tag->deleteWikiTag($id);
+       $this->wiki->deleteWiki($id);
+       header("Location: {$_SERVER['HTTP_REFERER']}");
+    }
+    public function edit($id){
+        
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $this->wiki->setTitre($_POST['titre']);
+            $this->wiki->setContenu($_POST['contenu']);
+            $this->wiki->setIdCategorie($_POST['categorie']);
+            $this->wiki_tag->deleteWikiTag($id);
+            foreach($_POST['tag'] as $tag){
+                $this->wiki_tag->createWikiTag($id, $tag);
+                header("Location: {$_SERVER['HTTP_REFERER']}");
+               }
+            
+            $this->wiki->editWiki($id); 
+          
+    
+            header("Location: {$_SERVER['HTTP_REFERER']}");
+        }
+    }
+    
 }
