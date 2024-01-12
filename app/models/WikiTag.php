@@ -36,17 +36,6 @@ class WikiTag
             echo "Error: " . $e->getMessage();
         }
     }
-    public function editWikiTag($id, $tag)
-    {
-        try {
-            $query = $this->connection->getConnection()->prepare("UPDATE `wikitag` SET `id_wiki` = :id, `id_tag`= :id_tag  WHERE id = :id");
-            $query->bindValue(':id', $id);
-            $query->bindValue(':id_tag', $tag);
-            $query->execute();
-        } catch (\PDOException $e) {
-            echo "Error: " . $e->getMessage();
-        }
-    }
 
     // Add other methods as needed for your application
 

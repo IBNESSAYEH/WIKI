@@ -5,7 +5,6 @@ if($_SESSION['isAdmin'] != 1){
     header("location: http://localhost:8000");
    }
 ?>
-  
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,12 +89,7 @@ if($_SESSION['isAdmin'] != 1){
                 <i class="fas fa-user"></i>
                 <div class="container__statistique__info">
                     <p>users</p>
-                    <?php if (is_array($users)): ?>
                     <p class="container__statistique__detail"><?= count($users) ?></p>
-        <?php else: ?>
-            <p class="container__statistique__detail">0</p>
-        <?php endif; ?>
-                    
                 </div>
             </div>
             <div class="container__statistique__data">
@@ -109,30 +103,18 @@ if($_SESSION['isAdmin'] != 1){
         <?php endif; ?>
                 </div>
             </div>
-
             <div class="container__statistique__data">
-                <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModalAddTag"><i class="fas fa-tag"></i></a>
-                
+                <i class="fas fa-tag"></i>
                 <div class="container__statistique__info">
                     <p>tags</p>
-                    <?php if (is_array($tags)): ?>
                     <p class="container__statistique__detail"><?= count($tags) ?></p>
-                    <?php else: ?>
-                    <p class="container__statistique__detail">0</p>
-                    <?php endif; ?>
-                    
                 </div>
             </div>
-            
             <div class="container__statistique__data">
-            <a href=""><i class="fas fa-table"></i></a>
+                <i class="fas fa-table"></i>
                 <div class="container__statistique__info">
                     <p>categories</p>
-                    <?php if (is_array($categories)): ?>
                     <p class="container__statistique__detail"><?= count($categories) ?></p>
-        <?php else: ?>
-            <p class="container__statistique__detail">0</p>
-        <?php endif; ?>
                 </div>
             </div>
 
@@ -180,7 +162,7 @@ if($_SESSION['isAdmin'] != 1){
                                 <input name="id"  value="<?= $wiki->id ?>"  type="hidden">
                                 <button type="submit"   class="btn btn-outline-primary">accepter</button>
                             </form>
-                                            <a  href="http://localhost:8000/wiki/delete/<?= $wiki->id  ?>" class="btn btn-outline-danger">supprimer</a>
+                                            <a  href="" class="btn btn-outline-danger">supprimer</a>
                                         </div>
                                     </div>
                                 </div>
@@ -198,7 +180,7 @@ if($_SESSION['isAdmin'] != 1){
             <h5>Tags Statistiques</h5>
             <i class="fas fa-tag"></i>
         </div>
-        <?php  if ($tags !== false): ?>
+
         <table class="container__table">
             <thead>
                 <tr>
@@ -211,23 +193,19 @@ if($_SESSION['isAdmin'] != 1){
                     <tr>
                         <td><?= $tag->nom ?></td>
                         <td>
-                            
-                            <a href="http://localhost:8000/tag/deleteTag/<?= $tag->id ?>" class="btn btn-outline-danger">supprimer</a>
-                            <div class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModaleditcaTag<?= $tag->id  ?>">modifier</div>
-                            <?php  include "../views/layouts/EditTagModal.php";  ?>
+                            <div class="btn btn-outline-primary">modifier</div>
+                            <div class="btn btn-outline-danger">supprimer</div>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <?php else: ?>
-    <p class="alert alert-success my-2">vous n'avez aucune tag  !!!!!.</p>
-<?php endif; ?>
+
         <div id="categories" class="container__header">
             <h5>categories Statistiques</h5>
             <i class="fas fa-table"></i>
         </div>
-        <?php  if ($categories !== false): ?>
+
         <table class="container__table">
             <thead>
                 <tr>
@@ -240,17 +218,13 @@ if($_SESSION['isAdmin'] != 1){
                     <tr>
                         <td><?= $categorie->nom ?></td>
                         <td>
-                            <a href="http://localhost:8000/categorie/deleteCategorie/<?= $categorie->id ?>" class="btn btn-outline-danger">supprimer</a>
-                            <div class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModaleditcategorie<?= $wiki->id  ?>">modifier</div>
-                            <?php  include "../views/layouts/EditCategorieModal.php";  ?>
+                            <div class="btn btn-outline-primary">modifier</div>
+                            <div class="btn btn-outline-danger">supprimer</div>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <?php else: ?>
-    <p class="alert alert-success my-2">vous n'avez aucune categorie !!!!!.</p>
-<?php endif; ?>
         <div  id="users"  class="container__header">
             <h5>Users Statistiques</h5>
             <i class="fas fa-user-group"></i>
@@ -278,7 +252,7 @@ if($_SESSION['isAdmin'] != 1){
     </main>
 
 
-    <?php  include "../views/layouts/AddTag.php";  ?>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
