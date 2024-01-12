@@ -125,7 +125,7 @@ if($_SESSION['isAdmin'] != 1){
             </div>
             
             <div class="container__statistique__data">
-            <a href=""><i class="fas fa-table"></i></a>
+            <a href="" data-bs-toggle="modal" data-bs-target="#exampleModalAddCategorie"><i class="fas fa-table"></i></a>
                 <div class="container__statistique__info">
                     <p>categories</p>
                     <?php if (is_array($categories)): ?>
@@ -275,10 +275,13 @@ if($_SESSION['isAdmin'] != 1){
                 <?php endforeach; ?>
             </tbody>
         </table>
+        <?php  include "../views/layouts/AddCategorie.php";  ?>
     </main>
-
-
     <?php  include "../views/layouts/AddTag.php";  ?>
+
+
+   
+  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 

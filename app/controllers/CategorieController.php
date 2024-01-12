@@ -40,4 +40,12 @@ class CategorieController extends Controller
         
         header("Location: {$_SERVER['HTTP_REFERER']}");
     }
+    public function addCategorie(){ 
+        // var_dump($_POST);die();
+        $nom =  $_POST['nom'];
+        $this->categorie->setNom($nom);
+        $this->categorie->createCategory();
+        
+        header("Location: {$_SERVER['HTTP_REFERER']}");
+    }
 }

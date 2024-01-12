@@ -5,11 +5,14 @@
         <div class="modal-header text-dark">
             <h4>creer tag</h4>
         </div>
-            <div class="modal-body">
-                 <form id="registerForm" class="signup__container__form w-100 " action="http://localhost:8000/tag/addTag" method="POST">
-                    <input type="text" name="nom" class="text-dark" placeholder="entrer le nouveau nom">
+        <form id="registerForm" class="signup__container__form w-100 " action="http://localhost:8000/tag/addTag" method="POST">
+                     <div class="modal-body">
+                    <input type="text" name="nom" class="form-control my-3  text-dark" placeholder="entrer le nouveau nom">
+                </div>
+                <div class="modal-footer">
+                    
                     <button type="submit" name="submit" class="btn btn-success">publier</button>
-            </form>
-        </div>
+                </div>
+                </form>
     </div>
 </div>
