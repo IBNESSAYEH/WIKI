@@ -4,6 +4,7 @@
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
     text-decoration: none !important;
+    list-style: none;
 }
 
 body{
@@ -35,9 +36,17 @@ nav{
 
 .nav__search{
     margin-top: -1rem;
-    width: 45rem;
+    width: 40rem;
     display: flex;
     justify-content: flex-start;
+}
+.nav__search form, .nav__search input{
+    width: 85%;
+
+}
+.nav__search input{
+    border-radius: 2rem;
+    color: black;
 }
 .main__section__wikis{
     margin-top: 3rem;

@@ -1,9 +1,8 @@
-<div class="modal fade" id="exampleModalINSERT" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModaledit<?= $wiki->id  ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel"> <img src="/assets/images/profile.jpg" alt="profile" class="profile rounded-circle shadow-sm"></h1>
-                <form id="registerForm" class="signup__container__form w-100 " action="http://localhost:8000/wiki/create" method="POST">
+                <form id="registerForm" class="signup__container__form w-100 " action="http://localhost:8000/wiki/edit/<?= $wiki->id ?>" method="POST">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -11,14 +10,13 @@
 
                 <div class="mb-3">
 
-                    <input type="text" name="titre" class="w-100 border-0 p-2 border-light " placeholder="creer l'objectif de cette wiki">
+                    <input type="text" name="titre" class="w-100 border-0 p-2 border-light " placeholder="creer l'objectif de cette wiki" value="<?= $wiki->titre ?>">
                 </div>
 <!-- textarea pour creer le contenu du wiki  -->
                 <div class="mb-3">
                     <label for="#story">Creer votre Wiki....</label>
-                    <textarea id="story" name="contenu" rows="10" class="w-100 text-muted" >
+                    <textarea id="story" name="contenu" rows="10" class="w-100 text-muted"><?= $wiki->contenu ?></textarea>
 
-                    </textarea>
                 </div>
 
             </div>

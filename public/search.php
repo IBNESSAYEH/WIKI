@@ -13,19 +13,9 @@ function searchWikisByTitle($input)
 
         $query = "
             SELECT
-                wiki.id AS wiki_id,
-                wiki.titre AS wiki_titre,
-                wiki.contenu AS wiki_contenu,
-                wiki.date_creation AS wiki_date,
-                categorie.nom AS categorie_nom,
-                GROUP_CONCAT(tag.nom) AS tag_nom,
-                users.nom AS user_nom
+               *
             FROM
                 wiki
-                INNER JOIN categorie ON wiki.id_categorie = categorie.id
-                LEFT JOIN wikiTag ON wiki.id = wikiTag.id_wiki
-                LEFT JOIN tag ON wikiTag.id_tag = tag.id
-                LEFT JOIN users ON wiki.id_user = users.id
             WHERE
                 wiki.titre LIKE :input 
         ";
@@ -34,7 +24,7 @@ function searchWikisByTitle($input)
         $stmt->bindValue(':input', '%' . $input . '%', PDO::PARAM_STR);
         $stmt->execute();
 
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll(PDO::FETCH_OBJ);
 
         return $result;
     } catch (PDOException $e) {
@@ -49,33 +39,65 @@ if (isset($_POST["input"])) {
     $wikis = searchWikisByTitle($input);
 
     if (!empty($wikis)) {
-        foreach ($wikis as $wiki) {
-            // Output each search result individually
-            echo "
-                <div class='section__wikis__container col-12 col-md-10 col-lg-6 d-flex justify-content-around'>
-                    <div class='card' style='width: 100%;'>
-                        <div class='card-header w-100'>
-                            <img src='/assets/images/profile.jpg' alt='profile' class='profile rounded-circle shadow-sm' style='width: 10%'>
-                        </div>
-                        <div class='card-body'>
-                            <h5 class='card-title'>{$wiki['wiki_titre']}</h5>
-                            <p class='card-text'>{$wiki['wiki_id']}</p>
-                        </div>
-                        <img class='card-img-bottom' src='assets/images/wiki.jpg' alt='Card image cap'>
-                        <div class='card-footer d-flex justify-content-between align-items-center'>
-                            {$wiki['wiki_date']}
+        foreach ($wikis as $wiki) { ?>
+        
+
+
+        <div class="section__wikis__container col-12 col-md-10 col-lg-6  d-flex justify-content-around">
+                        <div class="card"   style="width: 100%;">
+                            <div class="card-header w-100">
+
+                                <img src="/assets/images/profile.jpg" alt="profile"
+                                    class="profile rounded-circle shadow-sm " style="width: 10%">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title ">
+                                    <?= $wiki->titre ?>
+                                </h5>
+                                <p class="card-text">
+                                    <?= $wiki->contenu ?>
+                                </p>
+
+
+                            </div>
+                            <img class="card-img-bottom" src="assets/images/wiki.jpg" alt="Card image cap">
+
+                            <div class="card-footer d-flex justify-content-between align-items-center">
+
+                                <?= $wiki->date_creation ?>
+                              
+                                    <a class="text-secondary"><i class="fa-solid fa-flag ms-4 me-1  fs-5"></i></i>signaler</a>
+                                
+                            </div>
                         </div>
                     </div>
-                </div>
-            ";
-            // If the input is empty, return the first result and exit the loop
            
-        }
-    } else {
-        echo "0 results";
-    }
+   <?php     }
+    } else { ?>
+        
+        <div class="section__wikis__container col-12 col-md-10 col-lg-6  d-flex justify-content-around">
+                        <div class="card"   style="width: 100%;">
+                        <div class="card-header text-muted  ">
+
+<h6>aucune resultat.</h6>
+</div>
+
+
+    <img class="card-img-bottom " src="assets/images/no_result.jpg" alt="Card image cap" style="height: 50vh; border-radius : 0 !important">
+
+    <div class="card-footer text-muted  ">
+
+<h6>ressayez ....</h6>
+</div>
+
+                        </div>
+                    </div>
+
+
+
+<?php    }
 } else {
     // Handle the case where input is not set
     echo "Input is not set";
 }
-?>
+ ?>
