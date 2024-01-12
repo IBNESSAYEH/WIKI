@@ -76,12 +76,10 @@
                                 <?php if ($_SESSION['id_user'] == $wiki->id_user): ?>
                                     <div class="d-flex m-2">
 
-                                        <a href="http://localhost:8000/wiki/delete/<?= $wiki->id  ?>" class="text-secondary "><i
+                                        <a href="#" class="text-secondary "><i
                                                 class="fa-solid fa-trash  ms-4 me-1  fs-5"></i>supprimer</a>
-                                        <a href="#" class="text-secondary "  data-bs-toggle="modal" data-bs-target="#exampleModaledit<?= $wiki->id  ?>"><i
+                                        <a href="#" class="text-secondary "><i
                                                 class="fa-solid fa-pen-to-square  ms-4 me-1  fs-5"></i>modifier</a>
-                                                 <!-- Modal pourla modifiction d'une wiki -->
-                            <?php  include "../views/layouts/EditWikiModal.php";  ?>
                                     </div>
                                 <?php else: ?>
                                     <a class="text-secondary"><i class="fa-solid fa-flag ms-4 me-1  fs-5"></i></i>signaler</a>
@@ -123,11 +121,11 @@
 
     <script>
     document.addEventListener("DOMContentLoaded", function () {
-        var SearchInput = document.getElementById("search");
+        var liveSearchInput = document.getElementById("live_search");
         var searchResultContainer = document.getElementById("search_result");
 
-        SearchInput.addEventListener("keyup", function () {
-            var input = SearchInput.value;
+        liveSearchInput.addEventListener("keyup", function () {
+            var input = liveSearchInput.value;
 
             if (input !== "") {
                 var xhr = new XMLHttpRequest();
@@ -143,7 +141,10 @@
                     }
                 };
                 xhr.send("input=" + input);
-            } 
+            } else {
+                searchResultContainer.innerHTML = "";
+                searchResultContainer.style.display = "none";
+            }
         });
     });
 </script>

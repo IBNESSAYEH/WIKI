@@ -52,7 +52,7 @@
                             <div class="card card-body">
                                 <?php foreach ($tags as $tag) : ?>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="tag[]" value="<?= $tag->id ?>" >
+                                        <input class="form-check-input" type="checkbox" name="tag[]" value="<?= $tag->id ?>" required>
                                         <label class="form-check-label" for="flexRadioDefault1">
                                             <?= $tag->nom ?>
                                         </label>

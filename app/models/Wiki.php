@@ -40,41 +40,6 @@ class Wiki extends WikiHelper
         }
 
     }
-    public function editWiki($id){
-        try{
-
-            $query = $this->connection->getConnection()->prepare("UPDATE wiki SET `titre`= :titre,`contenu`= :contenu,`id_categorie`= :id_categorie  WHERE id = :id");
-            $query->bindValue(':titre', $this->getTitre());
-            $query->bindValue(':contenu', $this->getContenu());
-            $query->bindValue(':id_categorie', $this->getIdCategorie());
-            
-            $query->bindValue(':id', $id);
-            
-            $query->execute();
-            
-        }catch(\PDOException $e) {
-            echo "Error: " . $e->getMessage();
-       
-        }
-
-    }
-    public function editCategorieId($id){
-        try{
-
-            $query = $this->connection->getConnection()->prepare("UPDATE wiki SET `id_categorie`= :id_categorie  WHERE id_categorie = :id");
-
-            $query->bindValue(':id_categorie', null);
-            
-            $query->bindValue(':id', $id);
-            
-            $query->execute();
-            
-        }catch(\PDOException $e) {
-            echo "Error: " . $e->getMessage();
-       
-        }
-
-    }
     public function createWiki()
     {
         $query = $this->connection->getConnection()->prepare("INSERT INTO wiki(titre, contenu, id_categorie, id_user, isAccepted) VALUES(:titre, :contenu, :id_categorie, :id_user, :isAccepted)");
