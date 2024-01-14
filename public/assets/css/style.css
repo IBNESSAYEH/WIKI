@@ -36,12 +36,12 @@ nav{
 
 .nav__search{
     margin-top: -1rem;
-    width: 40rem;
+    width: 30rem;
     display: flex;
     justify-content: flex-start;
 }
 .nav__search form, .nav__search input{
-    width: 85%;
+    width: 95%;
 
 }
 .nav__search input{

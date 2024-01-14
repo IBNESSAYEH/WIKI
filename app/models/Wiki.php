@@ -111,7 +111,7 @@ class Wiki extends WikiHelper
     }
 
 
-    public function getAllWikisInfo(){
+    public function getAllWikisInfo($id){
         try {
             $query = $this->connection->getConnection()->prepare("SELECT
                 wiki.id AS wiki_id,
@@ -127,18 +127,66 @@ class Wiki extends WikiHelper
                 LEFT JOIN wikiTag ON wiki.id = wikiTag.id_wiki
                 LEFT JOIN tag ON wikiTag.id_tag = tag.id
                 LEFT JOIN users ON wiki.id_user = users.id
-            GROUP BY
-                wiki.id;
+            where 
+                wiki.id = :id;
             ");
-    
+            $query->bindValue(':id', $id);
             $query->execute();
-            $result = $query->fetchAll(PDO::FETCH_OBJ);
+            $result = $query->fetch(PDO::FETCH_OBJ);
             return !empty($result) ? $result : false;
         }catch(\PDOException $e) {
             echo "Error: " . $e->getMessage();
        
         }
     }
+
+
+    function searchWikisByTitle($input)
+{
+    try {
+      
+
+        $query = $this->connection->getConnection()->prepare("SELECT
+               *
+            FROM
+                wiki
+            WHERE
+                wiki.titre LIKE :input 
+        ");
+
+        $query->bindValue(':input', '%' . $input . '%', PDO::PARAM_STR);
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_OBJ);
+        return !empty($result) ? $result : false;
+    }catch(\PDOException $e) {
+        echo "Error: " . $e->getMessage();
+   
+    }
+}
+    function searchWikisByCategorie($input)
+{
+    try {
+      
+
+        $query = $this->connection->getConnection()->prepare("SELECT
+               wiki.*
+            FROM
+                wiki  
+             
+JOIN categorie ON wiki.id_categorie = categorie.id;
+WHERE
+categorie.nom LIKE :input 
+        ");
+
+        $query->bindValue(':input', '%' . $input . '%', PDO::PARAM_STR);
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_OBJ);
+        return !empty($result) ? $result : false;
+    }catch(\PDOException $e) {
+        echo "Error: " . $e->getMessage();
+   
+    }
+}
     
     
 }

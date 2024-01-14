@@ -23,6 +23,42 @@ class WikiController extends Controller
         $this->tags = new Tag();
         $this->wiki_tag = new WikiTag();
     }
+
+
+    public function detailWiki($id){
+   
+        $wikis = $this->wiki->getAllWikisInfo($id);
+
+        $this->view('detail_wiki', [
+            "wikis" => $wikis,
+            ]);
+    }
+    public function searchWikisByTitle(){
+
+        if (isset($_POST["input"])) {
+            $input = $_POST["input"];
+   
+        $wikis = $this->wiki->searchWikisByTitle($input);
+     
+
+        $this->view('searching/search', [
+            "wikis" => $wikis,
+            ]);
+        }
+    }
+    public function searchWikisByCategorie(){
+
+        if (isset($_POST["input"])) {
+            $input = $_POST["input"];
+   
+        $wikis = $this->wiki->searchWikisByCategorie($input);
+     
+
+        $this->view('searching/search', [
+            "wikis" => $wikis,
+            ]);
+        }
+    }
     public function create(){
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -77,5 +113,8 @@ exit;
             header("Location: {$_SERVER['HTTP_REFERER']}");
         }
     }
+
+
+   
     
 }

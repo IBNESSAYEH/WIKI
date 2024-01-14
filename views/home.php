@@ -73,10 +73,10 @@
                             <div class="card-footer d-flex justify-content-between align-items-center">
 
                                 <?= $wiki->date_creation ?>
-                                <?php if ($_SESSION['id_user'] == $wiki->id_user): ?>
+                                <?php if (isset($wiki->id_user) && isset($_SESSION['id_user']) && $_SESSION['id_user'] == $wiki->id_user): ?>
                                     <div class="d-flex m-2">
 
-                                        <a href="http://localhost:8000/wiki/delete/<?= $wiki->id  ?>" class="text-secondary "><i
+                                        <a href="http://localhost:8000/wiki/delete/<?= $wiki->id ?>" class="text-secondary "><i
                                                 class="fa-solid fa-trash  ms-4 me-1  fs-5"></i>supprimer</a>
                                         <a href="#" class="text-secondary "  data-bs-toggle="modal" data-bs-target="#exampleModaledit<?= $wiki->id  ?>"><i
                                                 class="fa-solid fa-pen-to-square  ms-4 me-1  fs-5"></i>modifier</a>
@@ -85,7 +85,9 @@
                                     </div>
                                 <?php else: ?>
                                     <a class="text-secondary"><i class="fa-solid fa-flag ms-4 me-1  fs-5"></i></i>signaler</a>
-                                <?php endif; ?>
+                                    <?php endif; ?>
+                                    <a href="http://localhost:8000/wiki/detailWiki/<?= $wiki->id ?>" class="text-secondary"><i class="fa-solid fa-magnifying-glass-plus ms-4 me-1  fs-5"></i></i>Plus</a>
+                                    
                             </div>
                         </div>
                     </div>
@@ -121,32 +123,7 @@
 
 
 
-    <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var SearchInput = document.getElementById("search");
-        var searchResultContainer = document.getElementById("search_result");
-
-        SearchInput.addEventListener("keyup", function () {
-            var input = SearchInput.value;
-
-            if (input !== "") {
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", "search.php", true);
-                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState == 4 && xhr.status == 200) {
-                        // Clear previous results
-                        searchResultContainer.innerHTML = "";
-                        // Append the new search results
-                        searchResultContainer.innerHTML += xhr.responseText;
-                        searchResultContainer.style.display = "flex";
-                    }
-                };
-                xhr.send("input=" + input);
-            } 
-        });
-    });
-</script>
+<script src="/assets/javascript/searching.js"></script>
 
 
 

@@ -40,12 +40,12 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                  <?php foreach ($tags as $tag) : ?>
-                                 <li><a class="dropdown-item">   <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="tag" value="<?= $tag->id ?>" >
+                                 <li><a class="dropdown-item">   <form class="form-check">
+                                                <input class="form-control" type="radio" name="tag" value="<?= $tag->id ?>" >
                                                 <label class="form-check-label" for="flexRadioDefault1">
                                                     <?= $tag->nom ?>
                                                 </label>
-                                            </div>
+                                            </form>
 
                                         </a></li>
                                         <?php endforeach; ?>
@@ -58,17 +58,15 @@
                                 categorie search
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <?php foreach ($categories as $categorie) : ?>
-                                    <li><a class="dropdown-item">
-                                            <div class="form-check">
-                                                <input class="form-check-input" name="categorie" type="radio" value="<?= $categorie->id ?>" id="">
+                                
+                                <li><a class="dropdown-item">
+                                        <form class="" method="POST">
+                                    <input class="form-control me-2 " id="categorieSearch" type="search" placeholder="Search..." aria-label="Search" style="background : #e5e1e1;">
 
-                                                <label class="form-check-label" for="flexCheckDefault">
-                                                    <?= $categorie->nom ?>
-                                                </label>
-                                            </div>
-                                        </a></li>
-                                <?php endforeach; ?>
+                                               
+                                </form>
+                                            </a></li>
+                                           
 
 
                             </ul>
@@ -84,20 +82,21 @@
 
 
 
-
-
-
-                    <?php if (!isset($_SESSION['isAdmin'])) : ?>
-                        <ul class="ml-auto d-flex mx-2">
-                            <li class="nav-item mx-2">
-                                <a class="text-primary" href="http://localhost:8000/auth/signin">Sign In</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="btn btn-primary" href="http://localhost:8000/auth/signup">Sign Up</a>
-                            </li>
-                        </ul>
-                    <?php endif; ?>
                 </div>
+                <ul class="ml-auto d-flex ">
+                        <?php if (!isset($_SESSION['isAdmin'])) : ?>
+                        <li class="nav-item ">
+                            <a class="text-primary" href="http://localhost:8000/auth/signin">Sign In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-primary" href="http://localhost:8000/auth/signup">Sign Up</a>
+                        </li>
+                        <?php else: ?>
+                        <li class="nav-item">
+                            <a class="btn btn-danger" href="http://localhost:8000/auth/logout">logout</a>
+                        </li>
+                        <?php endif; ?>
+                    </ul>
             </div>
         </div>
     </nav>
